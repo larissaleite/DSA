@@ -12,10 +12,10 @@ public class Output {
 	
 	private int bufferCapacity;
 	
-	private String filename;
+	private String path;
 	
 	public Output(String filename, int bufferCapacity) {
-		this.filename = filename;
+		this.path = filename;
 		this.bufferCapacity = bufferCapacity;
 		
 		try {
@@ -26,7 +26,7 @@ public class Output {
 	}
 	
 	public void create() throws IOException {
-		memoryMappedFile = new RandomAccessFile(filename, "rw");
+		memoryMappedFile = new RandomAccessFile(path, "rw");
 		
 		byteBuffer = memoryMappedFile.getChannel().map(FileChannel.MapMode.READ_WRITE, 0, bufferCapacity);
 	}
@@ -43,7 +43,7 @@ public class Output {
 	
 	public void print() throws IOException {
 		while (byteBuffer.hasRemaining()) {
-			System.out.println((int) byteBuffer.get());;
+			System.out.println((int) byteBuffer.get());
 		}
 	}
 

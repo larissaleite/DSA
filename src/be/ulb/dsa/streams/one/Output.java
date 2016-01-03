@@ -11,14 +11,14 @@ public class Output {
 	private DataOutputStream dataOutputStream;
 	private OutputStream outputStream;
 	
-	private String filename;
+	private String path;
 	
 	public Output(String filename) {
-		this.filename = filename;
+		this.path = filename;
 	}
 	
 	public void create() throws FileNotFoundException {
-		outputStream = new FileOutputStream(filename);
+		outputStream = new FileOutputStream(path);
 		dataOutputStream = new DataOutputStream(outputStream);
 	}
 	

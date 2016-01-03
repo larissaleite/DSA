@@ -13,12 +13,12 @@ public class Output {
 	private BufferedOutputStream bufferedOutputStream;
 	private DataOutputStream dataOutputStream;
 	
-	private String filename;
+	private String path;
 	
 	private int bufferSize;
 	
 	public Output(String filename, int bufferSize) {
-		this.filename = filename;
+		this.path = filename;
 		this.bufferSize = bufferSize;
 		
 		try {
@@ -29,7 +29,7 @@ public class Output {
 	}
 	
 	public void create() throws FileNotFoundException {
-		outputStream = new FileOutputStream(filename);
+		outputStream = new FileOutputStream(path);
 		bufferedOutputStream = new BufferedOutputStream(outputStream, bufferSize);
 		dataOutputStream = new DataOutputStream(bufferedOutputStream);
 	}

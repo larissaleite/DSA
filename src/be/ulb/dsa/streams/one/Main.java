@@ -3,7 +3,6 @@ package be.ulb.dsa.streams.one;
 import java.io.IOException;
 import java.util.Random;
 
-import be.ulb.dsa.externalmultiwaymerge.Output;
 import be.ulb.dsa.util.Benchmarker;
 import etm.core.monitor.EtmPoint;
 
