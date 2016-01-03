@@ -17,6 +17,11 @@ public class Output {
 	
 	public Output(String filename) {
 		this.filename = filename;
+		try {
+			this.create();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void create() throws FileNotFoundException {
@@ -34,5 +39,4 @@ public class Output {
 		outputStream.close();
 		dataOutputStream.close();
 	}
-
 }

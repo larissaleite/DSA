@@ -17,6 +17,12 @@ public class Output {
 	public Output(String filename, int bufferCapacity) {
 		this.filename = filename;
 		this.bufferCapacity = bufferCapacity;
+		
+		try {
+			this.create();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void create() throws IOException {

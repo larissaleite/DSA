@@ -1,6 +1,5 @@
-package be.ulb.dsa.streams.three;
+package be.ulb.dsa.externalmultiwaymerge;
 
-import java.io.BufferedInputStream;
 import java.io.DataInputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -11,27 +10,16 @@ public class Input {
 	
 	private InputStream inputStream;
 	private DataInputStream dataInputStream;
-	private BufferedInputStream bufferedInputStream;
 	
 	private String path;
 	
-	private int bufferSize;
-	
-	public Input(String path, int bufferSize) {
+	public Input(String path) {
 		this.path = path;
-		this.bufferSize = bufferSize;
-		
-		try {
-			this.open();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
 	}
 	
 	public void open() throws FileNotFoundException {
 		inputStream = new FileInputStream(path);
-		bufferedInputStream = new BufferedInputStream(inputStream, bufferSize);
-		dataInputStream = new DataInputStream(bufferedInputStream);
+		dataInputStream = new DataInputStream(inputStream);
 	}
 	
 	public int read_next() throws IOException {

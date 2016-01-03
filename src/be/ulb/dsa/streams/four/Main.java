@@ -1,37 +1,61 @@
 package be.ulb.dsa.streams.four;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Random;
+
+import be.ulb.dsa.util.Benchmarker;
+import etm.core.monitor.EtmPoint;
 
 public class Main {
 
+	private static final int FILES = 15;
+	private static final String OUTPUTFOLDER = "/Users/larissaleite/Documents/DSAProject/stream4/";
+	private static final int NUMBERS = 1000;
+	
+	private static final int BUFFER_SIZE = 16;
+
 	public static void main(String[] args) throws IOException {
-
-		String file = "/Users/larissaleite/Documents/integerfile.dat";
-
-		int bufferSize = 16;
 		
-		Output output = new Output(file, bufferSize);
-		output.create();
+		Benchmarker.setup();
 		
-		for (int i=0; i<4; i++) {
-			output.write(i);
+		EtmPoint point = Benchmarker.addPoint("stream4:"+FILES+"files:"+NUMBERS+"numbers");
+		
+		outputStream();
+		inputStream();
+		
+		point.collect();
+		
+		Benchmarker.showResults();
+		
+		Benchmarker.tearDown();
+	}
+
+	private static void inputStream() {
+		for (int f = 0; f < FILES; f++) {
+			Input input = new Input(OUTPUTFOLDER + "sample"+f+"_"+FILES+"_"+NUMBERS+".txt", BUFFER_SIZE);
+	
+			try {
+				while (!input.end_of_stream()) {
+					input.read_next();
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
-		
-		//output.print();
-		output.close();
-		
-		Input input = new Input(file, bufferSize);
+	}
 
-		try {
-			input.open();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+	private static void outputStream() {
+		for (int f = 0; f < FILES; f++) {
+			Output output = new Output(OUTPUTFOLDER + "sample"+f+"_"+FILES+"_"+NUMBERS+".txt", BUFFER_SIZE);
+			Random generator = new Random();
+			
+			int element = generator.nextInt(NUMBERS);
+			
+			try {
+				output.write(element);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
-
-		while (!input.end_of_stream()) {
-			System.out.println(input.read_next());
-		}
-
 	}
 }

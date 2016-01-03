@@ -17,6 +17,12 @@ public class Input {
 	
 	public Input(String path) {
 		this.path = path;
+
+		try {
+			this.open();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void open() throws FileNotFoundException {

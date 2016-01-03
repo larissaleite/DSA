@@ -1,6 +1,5 @@
-package be.ulb.dsa.streams.three;
+package be.ulb.dsa.externalmultiwaymerge;
 
-import java.io.BufferedOutputStream;
 import java.io.DataOutputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -9,18 +8,13 @@ import java.io.OutputStream;
 
 public class Output {
 	
-	private OutputStream outputStream;
-	private BufferedOutputStream bufferedOutputStream;
 	private DataOutputStream dataOutputStream;
+	private OutputStream outputStream;
 	
 	private String filename;
 	
-	private int bufferSize;
-	
-	public Output(String filename, int bufferSize) {
+	public Output(String filename) {
 		this.filename = filename;
-		this.bufferSize = bufferSize;
-		
 		try {
 			this.create();
 		} catch (FileNotFoundException e) {
@@ -30,8 +24,7 @@ public class Output {
 	
 	public void create() throws FileNotFoundException {
 		outputStream = new FileOutputStream(filename);
-		bufferedOutputStream = new BufferedOutputStream(outputStream, bufferSize);
-		dataOutputStream = new DataOutputStream(bufferedOutputStream);
+		dataOutputStream = new DataOutputStream(outputStream);
 	}
 	
 	public void write(int element) throws IOException {

@@ -2,29 +2,27 @@ package be.ulb.dsa.multiwaymerge;
 
 public class Element {
 	
-	Integer data;
-	Integer fromListIndex;
+	private Integer value;
+	private Integer listIndex;
 
-	public Element(int data, int indexList) {
-		this.data = data;
-		this.fromListIndex = indexList;
+	public Element(int value, int listIndex) {
+		this.value = value;
+		this.listIndex = listIndex;
 	}
 
-	public Integer getData() {
-		return data;
+	public Integer getValue() {
+		return value;
 	}
 
-	public void setData(int data) {
-		this.data = data;
+	public void setValue(int value) {
+		this.value = value;
 	}
 
-	public int getIndexList() {
-		return fromListIndex;
+	public int getListIndex() {
+		return listIndex;
 	}
 
-	public void setIndexList(int indexList) {
-		this.fromListIndex = indexList;
+	public void setListIndex(int listIndex) {
+		this.listIndex = listIndex;
 	}
-
-
 }

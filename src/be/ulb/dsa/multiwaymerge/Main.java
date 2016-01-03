@@ -41,6 +41,7 @@ public class Main {
 			List<Integer> integers = new LinkedList<Integer>();
 			
 			String filepath = args[i+1];
+			//String filepath = "/Users/larissaleite/Documents/DSAProject/test3/Out"+(i+1)+".txt";
 			Input input = new Input(filepath);
 			
 			try {
@@ -63,7 +64,7 @@ public class Main {
 		MultiwayMerge multiwayMerge = new MultiwayMerge(25);
 		List<Integer> sorted = multiwayMerge.sort(inputStreams);
 		
-		Output sortedOutput = new Output("/Users/larissaleite/Documents/DSAProject/integerfileoutput.dat");
+		Output sortedOutput = new Output("/Users/larissaleite/Documents/DSAProject/test3/integerfileoutput.dat");
 		
 		for (int i = 0; i < sorted.size(); i++) {
 			int element = sorted.get(i);

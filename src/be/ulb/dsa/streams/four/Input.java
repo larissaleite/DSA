@@ -16,6 +16,12 @@ public class Input {
 	public Input(String path, int bufferCapacity) {
 		this.path = path;
 		this.bufferCapacity = bufferCapacity;
+		
+		try {
+			this.open();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void open() throws IOException {
